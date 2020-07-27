@@ -12,7 +12,7 @@ private const val TAG = "EventService"
 
 class EventService : Service() {
 
-    private val eventNotifier = PublishSubject.create<Unit>()
+    private val eventNotifier = PublishSubject.create<Event>()
     private val eventListener = eventNotifier.hide()
 
     private val eventServiceBinder: IBinder = EventServiceBinder()
