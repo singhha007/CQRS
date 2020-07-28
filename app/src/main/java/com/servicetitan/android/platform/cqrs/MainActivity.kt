@@ -2,6 +2,7 @@ package com.servicetitan.android.platform.cqrs
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.servicetitan.android.platform.listener.ListenerManager
 import com.servicetitan.android.platform.writer.WriterManager
 
 class MainActivity : AppCompatActivity() {
@@ -11,5 +12,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         supportFragmentManager.beginTransaction()
             .replace(R.id.writerFragment, WriterManager.provideWriterFragment()).commit()
+
+//        supportFragmentManager.beginTransaction()
+//            .replace(R.id.listenerFragment, ListenerManager.provideListenerFragment()).commit()
     }
 }

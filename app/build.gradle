@@ -37,6 +37,9 @@ dependencies {
     // Writer
     implementation project(':writer')
 
+    //Listener
+    implementation project(':listener')
+
     //RxJava
     implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
