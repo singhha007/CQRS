@@ -12,8 +12,11 @@ private const val TAG = "EventService"
 
 class EventService : Service() {
 
-    private val eventNotifier = PublishSubject.create<Event>()
-    private val eventListener = eventNotifier.hide()
+    private val writerEventNotifier = PublishSubject.create<Event>()
+    private val writerEventListener = writerEventNotifier.hide()
+
+    private val listenerEventNotifier = PublishSubject.create<Event>()
+    private val listenerEventListener = listenerEventNotifier.hide()
 
     private val eventServiceBinder: IBinder = EventServiceBinder()
 
@@ -23,11 +26,17 @@ class EventService : Service() {
 
     override fun onBind(intent: Intent): IBinder = eventServiceBinder
 
-    fun notify(event: Event) {
-        eventNotifier.onNext(event)
+    fun notifyListeners(event: Event) {
+        listenerEventNotifier.onNext(event)
     }
 
-    fun listenToEvents(): Observable<Event> = eventListener
+    fun notifyWriters(event: Event) {
+        writerEventNotifier.onNext(event)
+    }
+
+    fun listenToWriterEvents(): Observable<Event> = writerEventListener
+
+    fun listenToListenerEvents(): Observable<Event> = listenerEventListener
 
     override fun onCreate() {
         super.onCreate()

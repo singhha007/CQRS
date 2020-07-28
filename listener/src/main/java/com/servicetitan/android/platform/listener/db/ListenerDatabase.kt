@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import com.servicetitan.android.platform.sourcer.Event
 import com.servicetitan.android.platform.listener.model.Command
 
-@Database(entities = [Command::class, Event::class], version = 3, exportSchema = false)
+@Database(entities = [Command::class, Event::class], version = 5, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class ListenerDatabase: RoomDatabase() {
     abstract fun commandDao(): CommandDao

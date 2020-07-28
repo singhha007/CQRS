@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.writerFragment, WriterManager.provideWriterFragment()).commit()
 
-//        supportFragmentManager.beginTransaction()
-//            .replace(R.id.listenerFragment, ListenerManager.provideListenerFragment()).commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.listenerFragment, ListenerManager.provideListenerFragment()).commit()
     }
 }

@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.servicetitan.android.platform.sourcer.Job
 import com.servicetitan.android.platform.writer.helper.EMPTY
 import java.util.*
 
