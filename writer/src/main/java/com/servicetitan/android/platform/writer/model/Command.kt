@@ -12,5 +12,5 @@ data class Command(
     @PrimaryKey @ColumnInfo(name = "commandId") var commandId: String = EMPTY,
     @ColumnInfo(name = "commandType") var commandType: String = EMPTY,
     @ColumnInfo(name = "createdAt") var createdAt: Date? = null,
-    @Embedded val data: Any? = null
+    @Embedded val data: Job? = null
 )

@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import com.servicetitan.android.platform.sourcer.Event
 import com.servicetitan.android.platform.writer.model.Command
 
-@Database(entities = [Command::class, Event::class], version = 2, exportSchema = false)
+@Database(entities = [Command::class, Event::class], version = 3, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class WriterDatabase: RoomDatabase() {
     abstract fun commandDao(): CommandDao

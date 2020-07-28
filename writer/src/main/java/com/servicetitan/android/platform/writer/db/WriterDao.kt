@@ -5,11 +5,12 @@ import com.servicetitan.android.platform.sourcer.Event
 import com.servicetitan.android.platform.writer.model.Command
 import io.reactivex.Completable
 import io.reactivex.Observable
+import io.reactivex.Single
 
 interface BaseDao<T> {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(items: T): Completable
+    fun insert(item: T): Completable
 
     @Delete
     fun delete(item: T): Completable
@@ -19,23 +20,23 @@ interface BaseDao<T> {
 interface CommandDao: BaseDao<Command> {
 
     @Query("SELECT * FROM COMMAND")
-    fun getCommands(): Observable<List<Command>>
+    fun getCommands(): Single<List<Command>>
 
     @Query("SELECT * FROM COMMAND WHERE commandId LIKE :commandId LIMIT 1")
-    fun getCommandByID(commandId: String): Observable<Command>
+    fun getCommandByID(commandId: String): Single<Command>
 
 
     @Query("SELECT * FROM COMMAND WHERE commandType LIKE :commandType LIMIT 1")
-    fun getCommandByType(commandType: String): Observable<Command>
+    fun getCommandByType(commandType: String): Single<Command>
 }
 
 @Dao
 interface EventDao: BaseDao<Event> {
 
     @Query("SELECT * FROM EVENT WHERE eventId LIKE :eventId LIMIT 1")
-    fun getEventByID(eventId: String): Observable<Event>
+    fun getEventByID(eventId: String): Single<Event>
 
 
     @Query("SELECT * FROM EVENT WHERE eventType LIKE :eventType LIMIT 1")
-    fun getEventByType(eventType: String): Observable<Event>
+    fun getEventByType(eventType: String): Single<Event>
 }

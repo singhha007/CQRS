@@ -5,6 +5,6 @@ import com.servicetitan.android.platform.writer.helper.EMPTY
 data class Job(
     var id: String = EMPTY,
     var name: String = EMPTY,
-    val location: String = EMPTY,
-    val technician: String = EMPTY
+    var location: String = EMPTY,
+    var technician: String = EMPTY
 )
