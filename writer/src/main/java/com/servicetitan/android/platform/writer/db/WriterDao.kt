@@ -18,6 +18,9 @@ interface BaseDao<T> {
 @Dao
 interface CommandDao: BaseDao<Command> {
 
+    @Query("SELECT * FROM COMMAND")
+    fun getCommands(): Observable<List<Command>>
+
     @Query("SELECT * FROM COMMAND WHERE commandId LIKE :commandId LIMIT 1")
     fun getCommandByID(commandId: String): Observable<Command>
 

@@ -6,6 +6,7 @@ import android.os.Binder
 import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
+import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 
 private const val TAG = "EventService"
@@ -22,6 +23,12 @@ class EventService : Service() {
     }
 
     override fun onBind(intent: Intent): IBinder = eventServiceBinder
+
+    fun notify(event: Event) {
+        eventNotifier.onNext(event)
+    }
+
+    fun listenToEvents(): Observable<Event> = eventListener
 
     override fun onCreate() {
         super.onCreate()

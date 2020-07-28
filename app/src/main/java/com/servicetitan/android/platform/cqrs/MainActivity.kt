@@ -17,9 +17,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        bindService(Intent(this, EventService::class.java),
-                serviceConnection(),
-                Context.BIND_AUTO_CREATE)
+        bindService(Intent(this, EventService::class.java), serviceConnection(), Context.BIND_AUTO_CREATE)
 
         secondActivity.setOnClickListener { startActivity(Intent(this, SecondActivity::class.java)) }
     }
