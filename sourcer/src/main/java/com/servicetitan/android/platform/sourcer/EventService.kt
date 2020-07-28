@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Binder
 import android.os.IBinder
 import android.util.Log
-import android.widget.Toast
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 
