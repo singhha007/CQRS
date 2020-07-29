@@ -53,13 +53,24 @@ class ListenerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? =
         inflater.inflate(R.layout.fragment_listener, container, false).also {
-            connectToService()
+            it.bind.setOnClickListener {
+                bind(true)
+                connectToService()
+            }
             it.createJob.setOnClickListener { createJob() }
             it.updateJob.setOnClickListener { updateJob() }
             it.deleteJob.setOnClickListener { deleteJob() }
             it.log.movementMethod = ScrollingMovementMethod()
-            updateLog()
+            it.unBind.setOnClickListener {
+                disposable.clear()
+                bind(false)
+            }
         }
+
+    private fun bind(enable: Boolean) {
+        bind.visibility = if(enable) View.GONE else View.VISIBLE
+        listenerContainer.visibility = if(enable) View.VISIBLE else View.GONE
+    }
 
     private fun connectToService() {
         activity?.bindService(
@@ -78,6 +89,7 @@ class ListenerFragment : Fragment() {
             progressBar.visibility = View.GONE
             eventService = (service as EventService.EventServiceBinder).service
             listenToEvents()
+            updateLog()
         }
     }
 
@@ -132,7 +144,7 @@ class ListenerFragment : Fragment() {
         commandDao.getCommands()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ log.text = it.joinToString(NEW_LINE) { command -> command.toString() } },
+            .subscribe({ log.text = it.reversed().joinToString(NEW_LINE) { command -> command.toString() } },
                 { Log.d(TAG, "Error Getting Command Log") })
             .addTo(disposable)
     }

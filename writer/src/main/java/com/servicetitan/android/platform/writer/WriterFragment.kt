@@ -133,7 +133,7 @@ class WriterFragment : Fragment() {
         commandDao.getCommands()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ log.text = it.joinToString(NEW_LINE) { command -> command.toString() } },
+            .subscribe({ log.text = it.reversed().joinToString(NEW_LINE) { command -> command.toString() } },
                 { Log.d(TAG, "Error Getting Command Log") })
             .addTo(disposable)
     }
