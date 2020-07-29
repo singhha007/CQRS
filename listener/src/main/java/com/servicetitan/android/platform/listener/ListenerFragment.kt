@@ -63,6 +63,7 @@ class ListenerFragment : Fragment() {
             it.log.movementMethod = ScrollingMovementMethod()
             it.unBind.setOnClickListener {
                 disposable.clear()
+                activity?.unbindService(serviceConnection())
                 bind(false)
             }
         }
